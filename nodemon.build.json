@@ -1,6 +1,7 @@
 {
   "watch": [
-    "devServer/"
+    "devServer/",
+    "buildServer.js"
   ],
   "exec": "node buildServer.js",
   "ext": "*"
