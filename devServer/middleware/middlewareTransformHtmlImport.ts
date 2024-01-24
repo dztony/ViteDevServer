@@ -2,10 +2,11 @@ import { Request, Response, NextFunction } from 'express';
 import path from 'node:path';
 import fs from 'node:fs';
 import * as esbuild from 'esbuild';
+import * as color from 'picocolors';
 
 export default async function middlewareTransformHtmlImport(req: Request, res: Response, next: NextFunction) {
   const { url } = req;
-  if (url.startsWith('/src') && url.endsWith('.ts')) {
+  if (url.startsWith('/src')) {
     const resolvePath = resolveHtmlImportFile(url);
     const codeString = fs.readFileSync(resolvePath).toString();
     const loader =  getHtmlImportFileLoader(url);
@@ -16,6 +17,7 @@ export default async function middlewareTransformHtmlImport(req: Request, res: R
     res.setHeader('Content-type', 'application/javascript');
     return res.send(transformedCode);
   }
+
   next();
 }
 
