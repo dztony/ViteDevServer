@@ -2,6 +2,6 @@
   "watch": [
     "devServerDist/"
   ],
-  "exec": "node devServerDist/start.js",
+  "exec": "node devServerDist/start.cjs",
   "ext": "*"
 }

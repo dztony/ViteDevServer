@@ -8,14 +8,15 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 async function main() {
   const startTime = performance.now();
   const entry = path.join(__dirname, 'devServer/start.ts');
-  const output = path.join(__dirname, 'devServerDist');
+  const output = path.join(__dirname, 'devServerDist/start.cjs');
   await esbuild.build({
     entryPoints: [entry],
     bundle: true,
-    outdir: output,
-    format: 'esm',
+    outfile: output,
+    format: 'cjs',
     write: true,
     charset: 'utf8',
+    platform: 'node',
   });
   const costTime = performance.now() - startTime + '';
   console.log(color.blue(`esbuild 耗时 - ${parseFloat(costTime).toFixed(2)} ms`));
