@@ -17,6 +17,7 @@ async function main() {
     write: true,
     charset: 'utf8',
     platform: 'node',
+    external: ['esbuild'],
   });
   const costTime = performance.now() - startTime + '';
   console.log(color.blue(`esbuild 耗时 - ${parseFloat(costTime).toFixed(2)} ms`));
