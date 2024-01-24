@@ -1,20 +1,17 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import color from 'picocolors';
-import path from 'node:path';
 
 import { printDeps, ServerPort } from "./utils";
-import * as process from "process";
+import middlewareLogger from "./middleware/middlewareLogger";
+import middlewareHtml from "./middleware/middlewareHtml";
 
 
 function main() {
   const app = express();
 
-  app.get('/', (_req, res) => {
-    const entryHtml = path.join(process.cwd(), 'index.html');
-    // res.sendFile();
-    // res.send(entryHtml);
-    res.sendFile(entryHtml);
-  });
+  // 中间件
+  app.use(middlewareLogger);
+  app.use(middlewareHtml);
 
   app.listen(ServerPort, () => {
     console.log('本地服务器地址',  color.blue(`http://localhost:${ServerPort}`));
