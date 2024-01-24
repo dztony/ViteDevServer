@@ -1,0 +1,7 @@
+{
+  "watch": [
+    "devServerDist/"
+  ],
+  "exec": "node devServerDist/start.js",
+  "ext": "*"
+}

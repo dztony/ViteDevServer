@@ -2,5 +2,6 @@
   "watch": [
     "devServer/"
   ],
+  "exec": "node buildServer.js",
   "ext": "*"
 }

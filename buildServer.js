@@ -1,7 +1,6 @@
 import * as esbuild from 'esbuild';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { exec } from "node:child_process";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -14,6 +13,7 @@ async function main() {
     outdir: output,
     format: 'esm',
     write: true,
+    charset: 'utf8',
   });
 }
 
