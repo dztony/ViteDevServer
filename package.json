@@ -16,6 +16,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@types/express": "^4.17.21",
     "@types/node": "^20.11.6",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
@@ -26,6 +27,7 @@
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "express": "^4.18.2",
     "nodemon": "^3.0.3",
     "picocolors": "^1.0.0",
     "ts-node": "^10.9.2",

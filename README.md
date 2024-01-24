@@ -1,4 +1,5 @@
 ### 说明
+- 实现 `Vite` 本地开发服务器的功能
 - 此项目基础是使用 vite 创建的 react-ts 的模板项目
 - devServer 是本地开发服务器的代码，使用 ts 编写，提供以下两个命令进行本地开发
   - `pnpm run local:build`
