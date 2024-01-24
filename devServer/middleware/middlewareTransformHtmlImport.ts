@@ -8,18 +8,22 @@ export default async function middlewareTransformHtmlImport(req: Request, res: R
   if (url.startsWith('/src') && url.endsWith('.ts')) {
     const resolvePath = resolveHtmlImportFile(url);
     const codeString = fs.readFileSync(resolvePath).toString();
-    const loader = path.extname(url).split('.')[1] as esbuild.Loader;
-    const { code } = await esbuild.transform(codeString, {
+    const loader =  getHtmlImportFileLoader(url);
+    const { code: transformedCode } = await esbuild.transform(codeString, {
       loader: loader,
       format: 'esm',
     });
     res.setHeader('Content-type', 'application/javascript');
-    return res.send(code);
+    return res.send(transformedCode);
   }
   next();
 }
 
 function resolveHtmlImportFile(filename: string): string {
   return path.join(process.cwd(), filename);
+}
+
+function getHtmlImportFileLoader(filename: string) {
+  return path.extname(filename).split('.')[1] as esbuild.Loader;
 }
 

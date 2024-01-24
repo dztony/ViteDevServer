@@ -4,4 +4,6 @@ function operateDom(): void {
   document.body.appendChild(dom);
 }
 
-operateDom();
+setTimeout(() => {
+  operateDom();
+}, 1000 * 1.5);
