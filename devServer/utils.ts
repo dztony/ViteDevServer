@@ -17,9 +17,12 @@ export function parseFileLoader(filename: string) {
 
 export const ServerPort = 3010;
 
+export const RegImageType = /\.(svg|png|jpg|jpeg)/;
 export const RegExternalType = /\.(css|svg|png|jpg|jpeg)$/;
 export const RegThirdPartyLib = /^[\w@][^:]/;
+
 export const ThirdPartyLibPrefix = '/@thirdPartyDeps/'
+export const AssetSuffix = 'asset';
 
 export const PreBuildLocation = path.join(process.cwd(), '/node_modules/.devServerCache');
 
@@ -31,6 +34,10 @@ export async function replaceImportStatement(originCode: string): Promise<string
   imports.forEach(item => {
     if (RegThirdPartyLib.test(item.n as string)) {
       codeStr.update(item.s, item.e, ThirdPartyLibPrefix + item.n);
+    }
+
+    if (RegImageType.test(item.n as string)) {
+      codeStr.update(item.s, item.e, item.n + `?${AssetSuffix}`);
     }
   });
 
