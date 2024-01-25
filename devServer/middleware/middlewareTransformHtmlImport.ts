@@ -8,8 +8,7 @@ import { replaceImportStatement } from "../utils";
 
 export default async function middlewareTransformHtmlImport(req: Request, res: Response, next: NextFunction) {
   const { url } = req;
-  if (url.startsWith('/src')) {
-    console.log(yellow(`处理的请求 - ${url}`));
+  if (url.startsWith('/src') && (url.endsWith('.tsx') || url.endsWith('.ts'))) {
     const resolvePath = resolveHtmlImportFile(url);
     const codeString = fs.readFileSync(resolvePath).toString();
     const loader =  getHtmlImportFileLoader(url);

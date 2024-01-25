@@ -7,6 +7,7 @@ import middlewareHtml from "./middleware/middlewareHtml";
 import middlewareTransformHtmlImport from "./middleware/middlewareTransformHtmlImport";
 import { getDeps } from "./depsPreBuild/depsParser";
 import { preBuild } from "./depsPreBuild/depsPrebuild";
+import middlewareDepsProcessor from "./middleware/middlewareDepsProcessor";
 
 
 function main() {
@@ -16,10 +17,12 @@ function main() {
   app.use(middlewareLogger);
   app.use(middlewareHtml);
   app.use(middlewareTransformHtmlImport);
+  app.use(middlewareDepsProcessor);
 
   app.get('*', (req: Request, res: Response) => {
-    res.statusCode = 401;
-    res.send('待处理');
+    // res.statusCode = 401;
+    res.setHeader('Content-type', 'application/javascript');
+    res.send('//待处理');
   });
 
   app.listen(ServerPort, async() => {
