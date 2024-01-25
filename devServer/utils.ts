@@ -19,7 +19,7 @@ export const ServerPort = 3010;
 
 export const RegExternalType = /\.(css|svg|png|jpg|jpeg)$/;
 export const RegThirdPartyLib = /^[\w@][^:]/;
-export const ThirdPartyLibPrefix = './@thirdPartyDeps/'
+export const ThirdPartyLibPrefix = '/@thirdPartyDeps/'
 
 export const PreBuildLocation = path.join(process.cwd(), '/node_modules/.devServerCache');
 

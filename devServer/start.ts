@@ -17,6 +17,11 @@ function main() {
   app.use(middlewareHtml);
   app.use(middlewareTransformHtmlImport);
 
+  app.get('*', (req: Request, res: Response) => {
+    res.statusCode = 401;
+    res.send('待处理');
+  });
+
   app.listen(ServerPort, async() => {
     const deps = await getDeps();
     await preBuild(deps);
