@@ -3,19 +3,23 @@ import path from 'node:path';
 import fs from 'node:fs';
 import * as esbuild from 'esbuild';
 import * as color from 'picocolors';
+import { yellow } from "picocolors";
+import { replaceImportStatement } from "../utils";
 
 export default async function middlewareTransformHtmlImport(req: Request, res: Response, next: NextFunction) {
   const { url } = req;
   if (url.startsWith('/src')) {
+    console.log(yellow(`处理的请求 - ${url}`));
     const resolvePath = resolveHtmlImportFile(url);
     const codeString = fs.readFileSync(resolvePath).toString();
     const loader =  getHtmlImportFileLoader(url);
-    const { code: transformedCode } = await esbuild.transform(codeString, {
+    const { code } = await esbuild.transform(codeString, {
       loader: loader,
       format: 'esm',
     });
+    const formatCode = await replaceImportStatement(code);
     res.setHeader('Content-type', 'application/javascript');
-    return res.send(transformedCode);
+    return res.send(formatCode);
   }
 
   next();
