@@ -8,3 +8,6 @@ export function printDeps(deps: Set<string>) {
 }
 
 export const ServerPort = 3010;
+
+export const RegExternalType = /\.(css|svg|png|jpg|jpeg)$/;
+export const RegThirdPartyLib = /^[\w@][^:]/;

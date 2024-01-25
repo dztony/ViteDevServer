@@ -1,7 +1,7 @@
 import * as esbuild from 'esbuild';
 import path from 'node:path';
 import { green } from "picocolors";
-import { printDeps } from "./utils";
+import { printDeps, RegExternalType, RegThirdPartyLib } from "../utils";
 
 export async function getDeps() {
   const deps = new Set<string>();
@@ -25,7 +25,7 @@ function EsbuildPluginDepsCollection(deps: Set<string>): esbuild.Plugin {
     setup(build) {
       build.onResolve(
         {
-          filter: /\.(css|svg|png|jpg|jpeg)$/,
+          filter: RegExternalType,
         },
         (resolveInfo) => {
           return {
@@ -37,11 +37,11 @@ function EsbuildPluginDepsCollection(deps: Set<string>): esbuild.Plugin {
 
       build.onResolve(
         {
-          filter: /^[\w@][^:]/,
+          filter: RegThirdPartyLib,
         },
         (resolveInfo) => {
           const { path: id } = resolveInfo;
-          console.log(green(JSON.stringify(resolveInfo, null, 2)));
+          // console.log(green(JSON.stringify(resolveInfo, null, 2)));
           deps.add(id);
           return {
             path: id,

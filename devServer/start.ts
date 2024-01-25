@@ -5,7 +5,8 @@ import { printDeps, ServerPort } from "./utils";
 import middlewareLogger from "./middleware/middlewareLogger";
 import middlewareHtml from "./middleware/middlewareHtml";
 import middlewareTransformHtmlImport from "./middleware/middlewareTransformHtmlImport";
-import { getDeps } from "./depsParser";
+import { getDeps } from "./depsPreBuild/depsParser";
+import { preBuild } from "./depsPreBuild/depsPrebuild";
 
 
 function main() {
@@ -18,6 +19,7 @@ function main() {
 
   app.listen(ServerPort, async() => {
     const deps = await getDeps();
+    await preBuild(deps);
 
     console.log('本地服务器地址', blue(`http://localhost:${ServerPort}`));
   });
