@@ -18,7 +18,6 @@ function main() {
 
   app.listen(ServerPort, async() => {
     const deps = await getDeps();
-    printDeps(deps);
 
     console.log('本地服务器地址', blue(`http://localhost:${ServerPort}`));
   });

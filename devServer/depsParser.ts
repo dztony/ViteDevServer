@@ -1,7 +1,7 @@
 import * as esbuild from 'esbuild';
 import path from 'node:path';
-import * as process from "process";
 import { green } from "picocolors";
+import { printDeps } from "./utils";
 
 export async function getDeps() {
   const deps = new Set<string>();
@@ -49,6 +49,10 @@ function EsbuildPluginDepsCollection(deps: Set<string>): esbuild.Plugin {
           };
         },
       );
+
+      build.onEnd(result => {
+        printDeps(deps);
+      });
     },
   };
 }
