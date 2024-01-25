@@ -1,10 +1,11 @@
 import express, { Request, Response } from 'express';
-import color from 'picocolors';
+import { blue } from 'picocolors';
 
 import { printDeps, ServerPort } from "./utils";
 import middlewareLogger from "./middleware/middlewareLogger";
 import middlewareHtml from "./middleware/middlewareHtml";
 import middlewareTransformHtmlImport from "./middleware/middlewareTransformHtmlImport";
+import { getDeps } from "./depsParser";
 
 
 function main() {
@@ -15,8 +16,11 @@ function main() {
   app.use(middlewareHtml);
   app.use(middlewareTransformHtmlImport);
 
-  app.listen(ServerPort, () => {
-    console.log('本地服务器地址',  color.blue(`http://localhost:${ServerPort}`));
+  app.listen(ServerPort, async() => {
+    const deps = await getDeps();
+    printDeps(deps);
+
+    console.log('本地服务器地址', blue(`http://localhost:${ServerPort}`));
   });
 }
 
