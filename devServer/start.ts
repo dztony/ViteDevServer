@@ -10,7 +10,6 @@ import { preBuild } from "./depsPreBuild/depsPrebuild";
 import middlewareDepsProcessor from "./middleware/middlewareDepsProcessor";
 import middlewareCss from "./middleware/middlewareCss";
 import middlewareAssetProcessor from "./middleware/middlewareAssetProcessor";
-import path from "node:path";
 import middlewareStatic from "./middleware/middlewareStatic";
 
 
@@ -25,12 +24,6 @@ function main() {
   app.use(middlewareCss);
   app.use(middlewareAssetProcessor);
   app.use(middlewareStatic);
-
-  // app.get('*', (req: Request, res: Response) => {
-  //   // res.statusCode = 401;
-  //   res.setHeader('Content-type', 'application/javascript');
-  //   res.send('//待处理');
-  // });
 
   app.listen(ServerPort, async() => {
     const deps = await getDeps();
