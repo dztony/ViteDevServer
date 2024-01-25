@@ -8,6 +8,7 @@ import middlewareTransformHtmlImport from "./middleware/middlewareTransformHtmlI
 import { getDeps } from "./depsPreBuild/depsParser";
 import { preBuild } from "./depsPreBuild/depsPrebuild";
 import middlewareDepsProcessor from "./middleware/middlewareDepsProcessor";
+import middlewareCss from "./middleware/middlewareCss";
 
 
 function main() {
@@ -18,6 +19,7 @@ function main() {
   app.use(middlewareHtml);
   app.use(middlewareTransformHtmlImport);
   app.use(middlewareDepsProcessor);
+  app.use(middlewareCss);
 
   app.get('*', (req: Request, res: Response) => {
     // res.statusCode = 401;
