@@ -1,14 +1,12 @@
 import * as esbuild from 'esbuild';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import color from 'picocolors';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 async function main() {
   const startTime = performance.now();
-  const entry = path.join(__dirname, 'devServer/start.ts');
-  const output = path.join(__dirname, 'devServerDist/start.cjs');
+  const entry = path.join(process.cwd(), 'devServer/start.ts');
+  const output = path.join(process.cwd(), 'devServerDist/start.cjs');
   await esbuild.build({
     entryPoints: [entry],
     bundle: true,
