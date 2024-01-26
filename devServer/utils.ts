@@ -1,4 +1,4 @@
-import { green, yellow } from "picocolors";
+import { gray, green, yellow } from "picocolors";
 import path from 'node:path';
 import * as esbuild from "esbuild";
 import MagicString from "magic-string";
