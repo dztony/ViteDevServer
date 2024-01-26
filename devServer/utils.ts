@@ -32,13 +32,16 @@ export async function replaceImportStatement(originCode: string): Promise<string
   const codeStr = new MagicString(originCode);
 
   imports.forEach(item => {
-    if (RegThirdPartyLib.test(item.n as string)) {
-      codeStr.update(item.s, item.e, ThirdPartyLibPrefix + item.n);
+    if (item.n) {
+      if (RegThirdPartyLib.test(item.n as string)) {
+        codeStr.update(item.s, item.e, ThirdPartyLibPrefix + item.n);
+      }
+
+      if (RegImageType.test(item.n as string)) {
+        codeStr.update(item.s, item.e, item.n + `?${AssetSuffix}`);
+      }
     }
 
-    if (RegImageType.test(item.n as string)) {
-      codeStr.update(item.s, item.e, item.n + `?${AssetSuffix}`);
-    }
   });
 
   return codeStr.toString();
