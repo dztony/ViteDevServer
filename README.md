@@ -1,13 +1,22 @@
-### 背景
-- 基于 `Vite` 开发服务器的思路实现的 `no bundle` 的本地开发服务器
+### Vite 开发服务器功能实现
+- 基于 `ESM` 特性
+- `no-bundle`
+- 参考 `Vite`
+---
 
-### 使用说明
-- 实现 `Vite` 本地开发服务器的功能
-- 此项目基础是使用 vite 创建的 react-ts 的模板项目
-- devServer 是本地开发服务器的代码，使用 ts 编写，提供以下两个命令进行本地开发
-  - `pnpm run local:build`
-    - 使用 nodemon 监听 `devServer` 下的 `typescript` 代码变更
-    - 使用 `esbuild` 打包生成 `ESM` 格式的 `javascript` 代码
-    - 打包到目录 `devServerDist/start.js`
-  - `pnpm run local:dev`
-    - 使用 `nodemon` 监听 `devServerDist` 的产物，并进行执行
+### 快速开始
+```shell
+# 安装依赖
+pnpm install
+
+# 打包本地开发服务器
+# 产物位置：/devServerDist/start.cjs
+pnpm run local:build
+
+# 启动本地开发服务器
+pnpm run local:dev
+
+# 项目基础是基础 Vite react-ts 模板生成的项目
+# 可以直接使用 Vite 启动本地开发服务器，和自己实现的本地开发服务器进行对比
+pnpm run dev
+```
