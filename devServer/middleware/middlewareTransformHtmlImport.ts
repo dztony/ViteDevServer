@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import path from 'node:path';
 import fs from 'node:fs';
 import * as esbuild from 'esbuild';
-import * as color from 'picocolors';
 import { yellow } from "picocolors";
 import { replaceImportStatement } from "../utils";
 

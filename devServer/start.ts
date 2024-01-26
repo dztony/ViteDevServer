@@ -1,7 +1,7 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import { blue } from 'picocolors';
 
-import { printDeps, ServerPort } from "./utils";
+import { ServerPort } from "./utils";
 import middlewareLogger from "./middleware/middlewareLogger";
 import middlewareHtml from "./middleware/middlewareHtml";
 import middlewareTransformHtmlImport from "./middleware/middlewareTransformHtmlImport";

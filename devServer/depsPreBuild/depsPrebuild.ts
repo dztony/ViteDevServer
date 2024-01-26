@@ -1,10 +1,8 @@
 import * as esbuild from 'esbuild';
-import { parseFileLoader, PreBuildLocation, RegThirdPartyLib } from "../utils";
+import { PreBuildLocation, RegThirdPartyLib } from "../utils";
 import { blue, green, red, yellow } from "picocolors";
 import * as resolve from "resolve";
-import fs from "node:fs";
-import * as process from "process";
-import { OnLoadArgs, Plugin } from "esbuild";
+import { Plugin } from "esbuild";
 
 export async function preBuild(deps: Set<string>): Promise<void> {
   await esbuild.build({
