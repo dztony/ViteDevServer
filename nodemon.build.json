@@ -1,8 +1,0 @@
-{
-  "watch": [
-    "devServer/",
-    "buildServer.mjs"
-  ],
-  "exec": "node buildServer.mjs",
-  "ext": "*"
-}
