@@ -6,7 +6,7 @@ export default async function middlewareCss(req: Request, res: Response, next: N
   const { url, path: reqName } = req;
   if (url.startsWith('/src') && url.endsWith('.css')) {
     const filename = path.join(process.cwd(), reqName);
-    const code = fs.readFileSync(filename, 'utf-8');
+    const code = fs.readFileSync(filename, 'utf-8').replace(/\n/g, '');
     const script = `
      const css = "${code.replace(/\n/g, '')}";
      const s = document.createElement("style");
