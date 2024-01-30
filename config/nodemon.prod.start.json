@@ -1,7 +1,7 @@
 {
   "watch": [
-    "prodBuilderDist/"
+    "dist/prodBuilderDist/"
   ],
-  "exec": "node prodBuilderDist/build.cjs",
+  "exec": "node dist/prodBuilderDist/build.cjs",
   "ext": "*"
 }

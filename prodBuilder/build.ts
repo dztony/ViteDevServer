@@ -1,5 +1,5 @@
 function main() {
-  console.log('prod build 666');
+  console.log('prod build 1111');
 }
 
 main();
