@@ -6,7 +6,7 @@ import color from 'picocolors';
 async function main() {
   const startTime = performance.now();
   const entry = path.join(process.cwd(), 'devServer/start.ts');
-  const output = path.join(process.cwd(), 'devServerDist/start.cjs');
+  const output = path.join(process.cwd(), 'dist/devServerDist/start.cjs');
   await esbuild.build({
     entryPoints: [entry],
     bundle: true,

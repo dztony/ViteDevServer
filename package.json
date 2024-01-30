@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "local:dev": "nodemon --config config/nodemon.dev.json",
-    "local:build": "nodemon --config config/nodemon.build.json",
+    "dev:build": "nodemon --config config/nodemon.dev.build.json",
+    "dev:start": "nodemon --config config/nodemon.dev.start.json",
     "prod:build": "nodemon --config config/nodemon.prod.build.json",
     "prod:start": "nodemon --config config/nodemon.prod.start.json",
     "dev": "vite",
