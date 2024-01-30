@@ -1,0 +1,7 @@
+{
+  "watch": [
+    "prodBuilderDist/"
+  ],
+  "exec": "node prodBuilderDist/build.cjs",
+  "ext": "*"
+}
