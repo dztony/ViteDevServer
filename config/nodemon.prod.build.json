@@ -1,8 +1,0 @@
-{
-  "watch": [
-    "prodBuilder/",
-    "scripts/prodBuild.mjs"
-  ],
-  "exec": "node scripts/prodBuild.mjs",
-  "ext": "*"
-}

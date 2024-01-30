@@ -2,6 +2,6 @@
   "watch": [
     "dist/prodBuilderDist/"
   ],
-  "exec": "node dist/prodBuilderDist/build.cjs",
+  "exec": "node dist/prodBuilderDist/start.cjs",
   "ext": "*"
 }
