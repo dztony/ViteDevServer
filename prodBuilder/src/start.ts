@@ -1,5 +1,6 @@
 import path from "node:path";
 import { rollup } from 'rollup';
+import swc from "@rollup/plugin-swc";
 
 async function main() {
   console.log('prod build 123123');
@@ -7,11 +8,15 @@ async function main() {
   const entry = path.join(process.cwd(), 'src/main.tsx');
 
   const entryJs = path.join(process.cwd(), 'src/test.js');
-  // console.log('entryHtml - ', entryHtml);
-  // console.log('entry - ', entry);
-  console.log('entryJs - ', entryJs);
+  const entryTs = path.join(process.cwd(), 'src/test2.ts');
+  console.log('entryTs - ', entryTs);
   const bundle = await rollup({
-    input: entryJs,
+    input: {
+      'ts': entryTs,
+    },
+    plugins: [
+      swc(),
+    ],
   });
   // console.log('bundle - ', JSON.stringify(bundle, null, 2));
   await bundle.write({
