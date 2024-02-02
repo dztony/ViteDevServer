@@ -1,6 +1,7 @@
 import path from "node:path";
 import { rollup } from 'rollup';
-import swc from "@rollup/plugin-swc";
+import commonjs from "@rollup/plugin-commonjs";
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 
 async function main() {
   console.log('prod build 123123');
@@ -12,13 +13,15 @@ async function main() {
   console.log('entryTs - ', entryTs);
   const bundle = await rollup({
     input: {
-      'ts': entryTs,
+      // 'ts': entryTs,
+      // 'jsx': entry,
+      'js': entryJs,
     },
     plugins: [
-      swc(),
+      commonjs(),
+      nodeResolve(),
     ],
   });
-  // console.log('bundle - ', JSON.stringify(bundle, null, 2));
   await bundle.write({
     format: 'es',
     dir: 'dist/appDist',
