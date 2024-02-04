@@ -7,20 +7,30 @@ export default function RollupPluginEsbuildTransform(): Plugin {
   return {
     name: 'rollup-plugin-esbuild-transform',
     buildStart(inputOptions) {
-      console.log(red('esbuild-transform buildStart hook'));
+      console.log(red('****esbuild-transform start****'));
     },
     async load(id) {
-      console.log(blue(`resolveId - ${id}`));
       const originCode = fs.readFileSync(id).toString();
-      console.log(originCode);
       const { code, map } = await esbuild.transform(originCode, {
         loader: 'tsx',
         format: 'esm',
+        platform: 'browser',
+        target: [
+          'es6',
+        ],
+        define: {
+          'process.env.NODE_ENV': '"production"',
+        },
+        minify: true,
+        // banner: "import { createRequire as topLevelCreateRequire } from 'module';const require = topLevelCreateRequire(import.meta.url);",
       });
       return {
         code,
         map,
       };
+    },
+    buildEnd() {
+      console.log(red('****esbuild-transform end****'));
     },
   };
 }
