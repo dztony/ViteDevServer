@@ -8,6 +8,7 @@
     "dev:start": "nodemon --config devServer/config/nodemon.dev.start.json",
     "prod:build": "nodemon --config prodBuilder/config/nodemon.prod.build.json",
     "prod:start": "nodemon --config prodBuilder/config/nodemon.prod.start.json",
+    "prod:roll": "rollup --config rollupBuilder/rollup.config.mjs",
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
