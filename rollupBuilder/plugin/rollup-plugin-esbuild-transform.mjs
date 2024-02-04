@@ -9,6 +9,7 @@ export default function RollupPluginEsbuildTransform() {
     },
     async transform(code, id) {
       const loader = getLoaderById(id);
+      // console.log(color.yellow(id));
       const transformResult = await esbuild.transform(code, {
         format: 'esm',
         loader: loader,
