@@ -1,6 +1,5 @@
 import * as esbuild from 'esbuild';
 import color from 'picocolors';
-import fs from 'node:fs';
 
 export default function RollupPluginEsbuildTransform() {
   return {
@@ -8,31 +7,43 @@ export default function RollupPluginEsbuildTransform() {
     buildStart(inputOptions) {
       console.log(color.red('****esbuild-transform start****'));
     },
-    async load(id) {
-      const charList = id.split('.');
-      const extname = charList[charList.length - 1];
-      console.log(color.yellow(id + '--' + extname));
-      const originCode = fs.readFileSync(id).toString();
-      const { code, map } = await esbuild.transform(originCode, {
-        loader: extname,
+    async transform(code, id) {
+      const loader = getLoaderById(id);
+      const transformResult = await esbuild.transform(code, {
         format: 'esm',
-        platform: 'browser',
-        target: [
-          'es6',
-        ],
+        loader: loader,
+        target: 'es6',
+        sourcemap: true,
         define: {
           'process.env.NODE_ENV': '"production"',
         },
-        // minify: true,
-        // banner: "import { createRequire as topLevelCreateRequire } from 'module';const require = topLevelCreateRequire(import.meta.url);",
       });
       return {
-        code,
-        map,
+        code: transformResult.code,
+        map: transformResult.map,
       };
     },
     buildEnd() {
       console.log(color.red('****esbuild-transform end****'));
     },
   };
+}
+
+function parseExtnameById(id) {
+  const charList = id.split('.');
+  return charList[charList.length - 1];
+}
+
+function getLoaderByExtname(extname) {
+  const loaderList = ['js', 'jsx', 'ts', 'tsx'];
+  if (loaderList.includes(extname)) {
+    return extname;
+  } else {
+    return loaderList[0];
+  }
+}
+
+function getLoaderById(id) {
+  const extname = parseExtnameById(id);
+  return getLoaderByExtname(extname);
 }
