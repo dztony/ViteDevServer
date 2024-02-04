@@ -14,7 +14,10 @@ async function main() {
     write: true,
     charset: 'utf8',
     platform: 'node',
-    external: ['esbuild', 'rollup', '@swc/wasm', '@swc/core-win32-x64-msvc'],
+    external: [
+      'esbuild',
+      'rollup',
+    ],
   });
   const costTime = performance.now() - startTime + '';
   console.log(color.blue(`esbuild 转移 builder 耗时 - ${parseFloat(costTime).toFixed(2)} ms`));
